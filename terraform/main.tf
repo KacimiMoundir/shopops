@@ -37,7 +37,7 @@ resource "aws_dynamodb_table" "incidents" {
 resource "aws_eks_cluster" "shopops" {
   name     = "eks-shopops"
   role_arn = data.aws_iam_role.lab_role.arn
-  version  = "1.30"
+  version  = "1.35"
 
   vpc_config {
     subnet_ids             = aws_subnet.public[*].id
@@ -51,6 +51,7 @@ resource "aws_eks_node_group" "workers" {
   node_role_arn   = data.aws_iam_role.lab_role.arn
   subnet_ids      = aws_subnet.public[*].id
   instance_types  = ["t3.medium"]
+  depends_on      = [aws_route_table_association.public]
 
   scaling_config {
     desired_size = 2
