@@ -5,6 +5,7 @@ tfplan
 *.tfstate*
 *.lock.hcl
 *.log
+*.pem
 .vscode
 reports
 env
