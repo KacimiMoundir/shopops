@@ -41,7 +41,7 @@ resource "aws_security_group" "jenkins" {
 
 resource "aws_instance" "jenkins" {
   ami                    = data.aws_ssm_parameter.al2023.value
-  instance_type          = "t3.small"
+  instance_type          = "t3.medium"
   subnet_id              = aws_subnet.public[0].id
   vpc_security_group_ids = [aws_security_group.jenkins.id]
   key_name               = "shopops-jenkins"
