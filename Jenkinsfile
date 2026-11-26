@@ -21,7 +21,7 @@ pipeline {
 
         stage('Trivy Security Scan') {
             steps {
-                sh "trivy image --severity HIGH,CRITICAL --exit-code 0 ${ECR_REPO}:${BUILD_NUMBER}"
+                sh "TMPDIR=/var/lib/jenkins/trivy-tmp trivy image --cache-dir /var/lib/jenkins/trivy-cache --severity HIGH,CRITICAL --exit-code 0 ${ECR_REPO}:${BUILD_NUMBER}"
             }
         }
 
